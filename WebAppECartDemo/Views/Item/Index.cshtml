@@ -15,7 +15,7 @@ const { error } = require("jquery");
 
     });
     function ResetItem() {
-        $("#CategoryId").val("");
+        $("#CategoryId").val("1");
         $("#ItemCode").val("");
         $("#ItemName").val("");
         $("#Description").val("");
@@ -25,25 +25,29 @@ const { error } = require("jquery");
 
     }
     function SaveItem() {
-        var formdata = new FormData;
+        var formdata = new FormData();
         formdata.append("CategoryId", $("#CategoryId").val());
         formdata.append("ItemCode", $("#ItemCode").val());
         formdata.append("ItemName", $("#ItemName").val());
         formdata.append("Description", $("#Description").val());
         formdata.append("ImagePathe", $("#ImagePathe").val());
-        formdata.append("ItemPrice", $("#ItemPrice").get(0).Items[0]);
+        formdata.append("ItemPrice", $("#ItemPrice").get(0).files[0]);
 
         $.ajax({
             async: true,
             dataType: 'JSON',
             type: 'POST',
             contentType: false,
-            processorType: false,
+            processorData: false,
             url: '/Item/Index',
             data: formdata,
             success: function (data) {
-                alert(data);
-                ResetItem();
+                if (data.success) {
+
+
+                    alert(data.Message);
+                    ResetItem();
+                }
 
             };
             error: function () {
@@ -62,7 +66,7 @@ const { error } = require("jquery");
     <div class="col-lg-4">
         <div class="form-group">
             Category:
-            @Html DropDownListFor(expression:model => model.categoryId, new SelectList(model.CategorySelectListItem, dataValueField:"Value",dataTextField:"Text"),
+            @Html.DropDownListFor(expression:model => model.categoryId, new SelectList(Model.CategorySelectListItem, dataValueField:"Value",dataTextField:"Text"),
             htmlAttributes: new {@class = "form-control"})
 
         </div>
@@ -72,7 +76,7 @@ const { error } = require("jquery");
     <div class="col-lg-4">
         <div class="form-group">
             Item Code:
-            @Html.TextAreaFor(expression: model => model.ItemCode, htmlAttributes: new { @class = "form-control" })
+            @Html.TextAreaFor(expression: model => model.ItemCode, htmlAttributes: new { @class = "form-control" , autocomplete = "off"})
 
         </div>
 
@@ -81,7 +85,7 @@ const { error } = require("jquery");
     <div class="col-lg-4">
         <div class="form-group">
             Item Name:
-            @Html.TextAreaFor(expression: model => model.ItemName, htmlAttributes: new { @class = "form-control" })
+            @Html.TextAreaFor(expression: model => model.ItemName, htmlAttributes: new { @class = "form-control", autocomplete = "off" })
 
         </div>
 
@@ -90,7 +94,7 @@ const { error } = require("jquery");
     <div class="col-lg-4">
         <div class="form-group">
             Description:
-            @Html.TextAreaFor(expression: model => model.Description, htmlAttributes: new { @class = "form-control" })
+            @Html.TextAreaFor(expression: model => model.Description, htmlAttributes: new { @class = "form-control", autocomplete = "off" })
 
         </div>
 
@@ -99,7 +103,7 @@ const { error } = require("jquery");
     <div class="col-lg-4">
         <div class="form-group">
             Item Price:
-            @Html.TextAreaFor(expression: model => model.itemPrice, htmlAttributes: new { @class = "form-control" })
+            @Html.TextAreaFor(expression: model => model.itemPrice, htmlAttributes: new { @class = "form-control", autocomplete = "off" })
 
         </div>
 
@@ -108,7 +112,7 @@ const { error } = require("jquery");
     <div class="col-lg-4">
         <div class="form-group">
             Image Path:
-            @Html.TextAreaFor(expression: model => model.ImagePath, htmlAttributes: new {Type = "file" @class = "form-control" })
+            @Html.TextAreaFor(expression: model => model.ImagePath, htmlAttributes: new {Type = "file", @class = "form-control" })
 
         </div>
 

@@ -14,7 +14,7 @@ namespace WebAppECartDemo.ViewModel
 
         public string ItemName { get; set; }
         public string Description { get; set; }
-        public HttpPostedFile ImagePathe { get; set; }
+        public HttpPostedFile ImagePath { get; set; }
         public decimal ImagePrice { get; set; }
         public  IEnumerable<SelectListItem> CategorySelectedListItems { get; set; }
         

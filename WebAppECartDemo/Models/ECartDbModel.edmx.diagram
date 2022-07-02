@@ -7,6 +7,8 @@
       <Diagram DiagramId="7255c80d1dae40228a944cb8c9c01e0e" Name="Diagram1">
         <EntityTypeShape EntityType="ECartDbModel.Category" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ECartDbModel.Item" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECartDbModel.Order" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="ECartDbModel.OrderDetail" Width="1.5" PointX="3.375" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

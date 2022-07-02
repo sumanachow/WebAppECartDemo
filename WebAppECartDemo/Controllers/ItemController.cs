@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -36,8 +37,23 @@ namespace WebAppECartDemo.Controllers
         [HttpPost]
         public JsonResult Index(ItemViewModel objItemViewModel)
         {
+            string NewImage = Guid.NewGuid() + Path.GetExtension(objItemViewModel.ImagePath.FileName);
+            objItemViewModel.ImagePath.SaveAs(filename: Server.MapPath("~/Images/" + NewImage));
+
+            Item objItem = new Item();
+            objItem.ImagePath = "~/Images/" + NewImage;
+            objItem.CategoryId = objItemViewModel.CategoryId;
+            objItem.ItemCode = objItemViewModel.ItemCode;
+            objItem.ItemName = objItemViewModel.ItemName;
+            objItem.Description = objItemViewModel.Description;
+            objItem.ItemId = Guid.NewGuid();
+            objItem.ItemPrice = objItemViewModel.ImagePrice;
+            objEcartDbEntities.Items.Add(objItem);
+            objEcartDbEntities.SaveChanges();
+
             return Json(new { Success = true, Message = "Item is added Successfully." }, JsonRequestBehavior.AllowGet);
         }
+
 
         
     }
