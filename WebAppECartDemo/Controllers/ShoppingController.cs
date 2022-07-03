@@ -10,7 +10,7 @@ namespace WebAppECartDemo.Controllers
 {
     public class ShoppingController : Controller
     {
-        // GET: Shopping // sumana
+        // GET: Shopping // sumana // Rishi
         private ECartDbEntities objEcartDbEntities;
         private List<ShoppingCartModel> listOfShoppingCartModel;
         public ShoppingController()
